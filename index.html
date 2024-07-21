@@ -9,18 +9,18 @@
 <body>
     <div class="container">
         <h1>Gold Price Calculator</h1>
-        <h4>Better Than Umairs</h4>
+        <div id="livePrice">Fetching live gold price...</div>
         <form id="goldForm">
             <label for="karat">Select Karat:</label>
             <select id="karat">
                 <option value="24">24 Karat</option>
                 <option value="22">22 Karat</option>
-                <option value="21">21 Karat</option>
                 <option value="18">18 Karat</option>
+                <option value="14">14 Karat</option>
             </select>
             
             <label for="makingCharge">Making Charges per Gram ($):</label>
-            <input type="number" id="makingCharge" step="0.01" required>
+            <input type="number" id="makingCharge" step="0.01" placeholder="0">
 
             <label for="weight">Weight in Grams:</label>
             <input type="number" id="weight" step="0.01" required>
