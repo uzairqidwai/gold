@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     function fetchGoldPrice() {
         fetch('https://metals-api.com/api/latest?access_key=69wh9p4j735ievbuqoyz0do500nr8q7sx750pdng38yjaw8rfox899hx4r52&base=USD&symbols=XAU')
@@ -7,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     const goldPricePerOunce = data.rates.USDXAU;
                     const goldPricePerGram = goldPricePerOunce / 31.1035;
-                    document.getElementById('livePrice').innerText = `Live Gold Price: $${goldPricePerGram.toFixed(2)} per gram`;
                     localStorage.setItem('goldPricePerGram', goldPricePerGram);
+                    updateLivePrice();
                 } else {
                     document.getElementById('livePrice').innerText = 'Error fetching gold price. Please try again later.';
                 }
@@ -19,8 +18,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    function updateLivePrice() {
+        const karat = document.getElementById('karat').value;
+        const goldPricePerGram = parseFloat(localStorage.getItem('goldPricePerGram'));
+        const goldPricePerGramKarat = goldPricePerGram * (karat / 24);
+        document.getElementById('livePrice').innerText = `Live Gold Price: $${goldPricePerGramKarat.toFixed(2)} per gram (${karat}K)`;
+    }
+
     fetchGoldPrice();
     setInterval(fetchGoldPrice, 60000); // Refresh every 1 minute
+
+    document.getElementById('karat').addEventListener('change', updateLivePrice);
 
     document.getElementById('goldForm').addEventListener('submit', function(event) {
         event.preventDefault();
