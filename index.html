@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Price Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gold Price Calculator</h1>
+        <form id="goldForm">
+            <label for="karat">Select Karat:</label>
+            <select id="karat">
+                <option value="24">24 Karat</option>
+                <option value="22">22 Karat</option>
+                <option value="18">18 Karat</option>
+                <option value="14">14 Karat</option>
+            </select>
+            
+            <label for="makingCharge">Making Charges per Gram ($):</label>
+            <input type="number" id="makingCharge" step="0.01" required>
+
+            <label for="weight">Weight in Grams:</label>
+            <input type="number" id="weight" step="0.01" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
