@@ -1,12 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let goldPricePerGram;
+    let goldPricePerGram24K;
+    let goldPricePerGram22K;
+    let goldPricePerGram18K;
+    let goldPricePerGram14K;
+
     function fetchGoldPrice() {
         fetch('https://metals-api.com/api/latest?access_key=69wh9p4j735ievbuqoyz0do500nr8q7sx750pdng38yjaw8rfox899hx4r52&base=USD&symbols=XAU')
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     const goldPricePerOunce = data.rates.USDXAU;
-                    const goldPricePerGram = goldPricePerOunce / 31.1035;
-                    localStorage.setItem('goldPricePerGram', goldPricePerGram);
+                    goldPricePerGram = goldPricePerOunce / 31.1035;
+                    goldPricePerGram24K = goldPricePerGram;
+                    goldPricePerGram22K = goldPricePerGram * (22 / 24);
+                    goldPricePerGram18K = goldPricePerGram * (18 / 24);
+                    goldPricePerGram14K = goldPricePerGram * (14 / 24);
                     updateLivePrice();
                 } else {
                     document.getElementById('livePrice').innerText = 'Error fetching gold price. Please try again later.';
@@ -20,8 +29,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateLivePrice() {
         const karat = document.getElementById('karat').value;
-        const goldPricePerGram = parseFloat(localStorage.getItem('goldPricePerGram'));
-        const goldPricePerGramKarat = goldPricePerGram * (karat / 24);
+        let goldPricePerGramKarat;
+        switch (karat) {
+            case '24':
+                goldPricePerGramKarat = goldPricePerGram24K;
+                break;
+            case '22':
+                goldPricePerGramKarat = goldPricePerGram22K;
+                break;
+            case '18':
+                goldPricePerGramKarat = goldPricePerGram18K;
+                break;
+            case '14':
+                goldPricePerGramKarat = goldPricePerGram14K;
+                break;
+        }
         document.getElementById('livePrice').innerText = `Live Gold Price: $${goldPricePerGramKarat.toFixed(2)} per gram (${karat}K)`;
     }
 
@@ -38,8 +60,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const makingCharge = makingChargeInput ? parseFloat(makingChargeInput) : 0;
         const weight = parseFloat(document.getElementById('weight').value);
 
-        const goldPricePerGram = parseFloat(localStorage.getItem('goldPricePerGram'));
-        const goldPricePerGramKarat = goldPricePerGram * (karat / 24);
+        let goldPricePerGramKarat;
+        switch (karat) {
+            case '24':
+                goldPricePerGramKarat = goldPricePerGram24K;
+                break;
+            case '22':
+                goldPricePerGramKarat = goldPricePerGram22K;
+                break;
+            case '18':
+                goldPricePerGramKarat = goldPricePerGram18K;
+                break;
+            case '14':
+                goldPricePerGramKarat = goldPricePerGram14K;
+                break;
+        }
 
         const totalPrice = (goldPricePerGramKarat + makingCharge) * weight;
         document.getElementById('result').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
