@@ -5,7 +5,7 @@ document.getElementById('goldForm').addEventListener('submit', function(event) {
     const makingCharge = parseFloat(document.getElementById('makingCharge').value);
     const weight = parseFloat(document.getElementById('weight').value);
 
-    fetch('https://metals-api.com/api/latest?access_key=YOUR_API_KEY&base=USD&symbols=XAU')
+    fetch('https://metals-api.com/api/latest?access_key=69wh9p4j735ievbuqoyz0do500nr8q7sx750pdng38yjaw8rfox899hx4r52&base=USD&symbols=XAU')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
