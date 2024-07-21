@@ -22,6 +22,12 @@ h1 {
     color: #333;
 }
 
+#livePrice {
+    margin-bottom: 20px;
+    font-size: 1em;
+    color: #333;
+}
+
 form {
     display: flex;
     flex-direction: column;
