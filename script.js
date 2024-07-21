@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 goldPricePerGramKarat = goldPricePerGram14K;
                 break;
         }
-        document.getElementById('livePrice').innerText = `Live Gold Price: $${goldPricePerGramKarat.toFixed(2)} per gram (${karat}K)`;
+        document.getElementById('livePrice').innerText = ` $${goldPricePerGramKarat.toFixed(2)} per gram (${karat}K)`;
     }
 
     fetchGoldPrice();
