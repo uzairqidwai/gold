@@ -24,3 +24,9 @@ document.getElementById('goldForm').addEventListener('submit', function(event) {
             document.getElementById('result').innerText = 'Error fetching gold price. Please try again later.';
         });
 });
+
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('focus', function() {
+        this.value = '';
+    });
+});
