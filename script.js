@@ -21,12 +21,9 @@ document.getElementById('goldForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const karat = document.getElementById('karat').value;
-    let makingCharge = parseFloat(document.getElementById('makingCharge').value);
+    const makingChargeInput = document.getElementById('makingCharge').value;
+    const makingCharge = makingChargeInput ? parseFloat(makingChargeInput) : 0;
     const weight = parseFloat(document.getElementById('weight').value);
-
-    if (isNaN(makingCharge)) {
-        makingCharge = 0;
-    }
 
     const goldPricePerGram = parseFloat(localStorage.getItem('goldPricePerGram'));
     const goldPricePerGramKarat = goldPricePerGram * (karat / 24);
@@ -40,3 +37,5 @@ document.querySelectorAll('input').forEach(input => {
         this.value = '';
     });
 });
+
+
